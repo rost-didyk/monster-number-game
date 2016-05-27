@@ -1,10 +1,11 @@
-import Render from './service/Render';
+import Render from './Render';
+import Logic from './Logic';
 
 export default class Engine {
     constructor(options) {
         this.state = options['state'];
         this.dispatch = options['dispatch'];
-        this.renderEngine = new Render(options['$canvas']);
+        this.renderEngine = new Render(options['$root']);
     }
 
     listenState(currentState) {

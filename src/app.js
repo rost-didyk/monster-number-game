@@ -5,7 +5,7 @@ import Engine from './engine/Engine';
 let store = createStore(gameState);
 
 let engine = new Engine({
-    $canvas: document.getElementById('app'),
+    $root: document.getElementById('app'),
     state: store.getState(),
     dispatch: store.dispatch
 });
