@@ -1,18 +1,26 @@
 import BaseView from './BaseView';
 import startScreenHtml from '../../templates/screens/start.html';
 
-export default class StartScreenView extends BaseView{
-    constructor() {
-        super(startScreenHtml);
+export default class StartScreenView extends BaseView {
+    constructor(options) {
 
-        let $el = this.htmlObject();
+        let template = {
+            html: startScreenHtml,
+            data:[]
+        };
 
-        let $btn = $el.querySelector('#js-start-game');
-
-        $btn.addEventListener('click', function(){
-            console.log('test-test');
-        });
-
-        return $el;
+        super(template, options);
     }
+    
+    events() {
+        return {
+            'click #js-start-game': 'startGame'
+        }
+    }
+
+    startGame(e) {
+        this.dispatchAction('start');
+        return false;
+    }
+
 }

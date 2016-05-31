@@ -1,11 +1,11 @@
 import Render from './Render';
-import Logic from './Logic';
+import Action from './Action';
 
 export default class Engine {
     constructor(options) {
         this.state = options['state'];
-        this.dispatch = options['dispatch'];
-        this.renderEngine = new Render(options['$root']);
+        this.RenderEngine = new Render(options['$root']);
+        this.RenderEngine.setActionDispatch(new Action(options['dispatch']));
     }
 
     listenState(currentState) {
@@ -17,11 +17,11 @@ export default class Engine {
         let gameStatus = this.state['gameStatus'];
         switch(gameStatus) {
             case 'START':
-                return this.renderEngine.gameStartScreen();
+                return this.RenderEngine.gameStartScreen();
             case 'STOP':
-                return this.renderEngine.gameStopScreen();
+                return this.RenderEngine.gameStopScreen();
             case 'RUN':
-                return this.renderEngine.gameRunScreen();
+                return this.RenderEngine.gameRunScreen();
         }
     }
 }

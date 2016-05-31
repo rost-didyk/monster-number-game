@@ -1060,9 +1060,9 @@
 	
 	var _Render2 = _interopRequireDefault(_Render);
 	
-	var _Logic = __webpack_require__(23);
+	var _Action = __webpack_require__(24);
 	
-	var _Logic2 = _interopRequireDefault(_Logic);
+	var _Action2 = _interopRequireDefault(_Action);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1073,8 +1073,8 @@
 	        _classCallCheck(this, Engine);
 	
 	        this.state = options['state'];
-	        this.dispatch = options['dispatch'];
-	        this.renderEngine = new _Render2.default(options['$root']);
+	        this.RenderEngine = new _Render2.default(options['$root']);
+	        this.RenderEngine.setActionDispatch(new _Action2.default(options['dispatch']));
 	    }
 	
 	    _createClass(Engine, [{
@@ -1089,11 +1089,11 @@
 	            var gameStatus = this.state['gameStatus'];
 	            switch (gameStatus) {
 	                case 'START':
-	                    return this.renderEngine.gameStartScreen();
+	                    return this.RenderEngine.gameStartScreen();
 	                case 'STOP':
-	                    return this.renderEngine.gameStopScreen();
+	                    return this.RenderEngine.gameStopScreen();
 	                case 'RUN':
-	                    return this.renderEngine.gameRunScreen();
+	                    return this.RenderEngine.gameRunScreen();
 	            }
 	        }
 	    }]);
@@ -1128,13 +1128,27 @@
 	        _classCallCheck(this, Render);
 	
 	        this.$root = $root;
+	        this.ActionDispatch = null;
 	    }
 	
 	    _createClass(Render, [{
+	        key: 'setActionDispatch',
+	        value: function setActionDispatch(Action) {
+	            this.ActionDispatch = Action;
+	        }
+	    }, {
+	        key: 'getActionDispatch',
+	        value: function getActionDispatch() {
+	            return this.ActionDispatch;
+	        }
+	    }, {
 	        key: 'gameStartScreen',
 	        value: function gameStartScreen() {
-	            var View = new _StartScreenView2.default('test');
-	            this.$root.appendChild(View);
+	            var View = new _StartScreenView2.default({
+	                dispatch: this.getActionDispatch()
+	            });
+	
+	            this.$root.appendChild(View.$el);
 	        }
 	    }]);
 	
@@ -1150,8 +1164,10 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	        value: true
+	    value: true
 	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _BaseView2 = __webpack_require__(19);
 	
@@ -1170,27 +1186,35 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var StartScreenView = function (_BaseView) {
-	        _inherits(StartScreenView, _BaseView);
+	    _inherits(StartScreenView, _BaseView);
 	
-	        function StartScreenView() {
-	                var _ret;
+	    function StartScreenView(options) {
+	        _classCallCheck(this, StartScreenView);
 	
-	                _classCallCheck(this, StartScreenView);
+	        var template = {
+	            html: _start2.default,
+	            data: []
+	        };
 	
-	                var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(StartScreenView).call(this, _start2.default));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(StartScreenView).call(this, template, options));
+	    }
 	
-	                var $el = _this.htmlObject();
-	
-	                var $btn = $el.querySelector('#js-start-game');
-	
-	                $btn.addEventListener('click', function () {
-	                        console.log('test-test');
-	                });
-	
-	                return _ret = $el, _possibleConstructorReturn(_this, _ret);
+	    _createClass(StartScreenView, [{
+	        key: 'events',
+	        value: function events() {
+	            return {
+	                'click #js-start-game': 'startGame'
+	            };
 	        }
+	    }, {
+	        key: 'startGame',
+	        value: function startGame(e) {
+	            this.dispatchAction('start');
+	            return false;
+	        }
+	    }]);
 	
-	        return StartScreenView;
+	    return StartScreenView;
 	}(_BaseView3.default);
 	
 	exports.default = StartScreenView;
@@ -1205,6 +1229,8 @@
 	    value: true
 	});
 	
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _lodash = __webpack_require__(20);
@@ -1216,10 +1242,21 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var BaseView = function () {
-	    function BaseView(html, data) {
+	
+	    //@to-do add remove events functionality
+	
+	    function BaseView(template, options) {
 	        _classCallCheck(this, BaseView);
 	
-	        this.el = this.makeTemplate(html, data);
+	        this.eventsForDispatch = options['eventsForDispatch'] || [];
+	
+	        this.dispatch = options['dispatch'] || null;
+	
+	        var tmpl = this.makeTemplate(template['html'], template['data']);
+	
+	        this.$el = this.toHtmlObject(tmpl);
+	
+	        this.parseEvents();
 	    }
 	
 	    _createClass(BaseView, [{
@@ -1228,16 +1265,45 @@
 	            return _lodash2.default.template(templateHtml)(data);
 	        }
 	    }, {
-	        key: 'html',
-	        value: function html() {
-	            return this.el;
+	        key: 'toHtmlObject',
+	        value: function toHtmlObject(html) {
+	            var d = document.createElement('div');
+	            d.innerHTML = html;
+	            return d.firstChild;
 	        }
 	    }, {
-	        key: 'htmlObject',
-	        value: function htmlObject() {
-	            var d = document.createElement('div');
-	            d.innerHTML = this.el;
-	            return d.firstChild;
+	        key: 'events',
+	        value: function events() {}
+	    }, {
+	        key: 'parseEvents',
+	        value: function parseEvents() {
+	            var _this = this;
+	
+	            var eventsObject = this.events();
+	
+	            var keys = Object.keys(eventsObject);
+	
+	            if (keys.length) {
+	                keys.forEach(function (v) {
+	                    var _v$split = v.split(' ');
+	
+	                    var _v$split2 = _slicedToArray(_v$split, 2);
+	
+	                    var event = _v$split2[0];
+	                    var selector = _v$split2[1];
+	
+	
+	                    var $el = _this.$el.querySelector(selector);
+	
+	                    $el.addEventListener(event, _this[eventsObject[v]].bind(_this));
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'dispatchAction',
+	        value: function dispatchAction(action, data) {
+	            var fn = this.dispatch[action];
+	            return fn.call(data, this.dispatch);
 	        }
 	    }]);
 	
@@ -17680,10 +17746,38 @@
 	module.exports = "<div class=\"start-screen-wrap\">\r\n    <button id=\"js-start-game\">Начать</button>\r\n</div>"
 
 /***/ },
-/* 23 */
+/* 23 */,
+/* 24 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Action = function () {
+	    function Action(dispatch) {
+	        _classCallCheck(this, Action);
+	
+	        this.dispatch = dispatch;
+	    }
+	
+	    _createClass(Action, [{
+	        key: 'start',
+	        value: function start() {
+	            console.log('start');
+	        }
+	    }]);
+	
+	    return Action;
+	}();
+	
+	exports.default = Action;
 
 /***/ }
 /******/ ]);

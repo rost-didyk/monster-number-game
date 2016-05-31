@@ -1,21 +1,51 @@
 import _ from 'lodash';
 
 export default class BaseView {
-    constructor(html, data) {
-        this.el = this.makeTemplate(html, data);
+
+    //@to-do add remove events functionality
+    constructor(template,options) {
+
+        this.eventsForDispatch = options['eventsForDispatch'] || [];
+
+        this.dispatch = options['dispatch'] || null;
+
+        let tmpl = this.makeTemplate(template['html'], template['data']);
+
+        this.$el = this.toHtmlObject(tmpl);
+
+        this.parseEvents();
     }
     
     makeTemplate(templateHtml, data) {
         return _.template(templateHtml)(data);
     }
 
-    html() {
-        return this.el;
+    toHtmlObject(html) {
+        let d = document.createElement('div');
+        d.innerHTML = html;
+        return d.firstChild;
     }
 
-    htmlObject() {
-        let d = document.createElement('div');
-        d.innerHTML = this.el;
-        return d.firstChild;
+    events() {}
+
+    parseEvents(){
+        let eventsObject = this.events();
+
+        let keys = Object.keys(eventsObject);
+
+        if (keys.length) {
+            keys.forEach(v=>{
+                let [event, selector] = v.split(' ');
+
+                let $el = this.$el.querySelector(selector);
+
+                $el.addEventListener(event, this[eventsObject[v]].bind(this));
+            });
+        }
+    }
+    
+    dispatchAction(action, data) {
+        let fn = this.dispatch[action];
+        return fn.call(data, this.dispatch);
     }
 }
