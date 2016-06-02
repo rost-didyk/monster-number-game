@@ -4,9 +4,7 @@ export default class BaseView {
 
     //@to-do add remove events functionality
     constructor(template,options) {
-
-        this.eventsForDispatch = options['eventsForDispatch'] || [];
-
+        
         this.dispatch = options['dispatch'] || null;
 
         let tmpl = this.makeTemplate(template['html'], template['data']);
@@ -17,7 +15,9 @@ export default class BaseView {
     }
     
     makeTemplate(templateHtml, data) {
-        return _.template(templateHtml)(data);
+        return _.template(templateHtml)({
+            data
+        });
     }
 
     toHtmlObject(html) {
@@ -29,7 +29,7 @@ export default class BaseView {
     events() {}
 
     parseEvents(){
-        let eventsObject = this.events();
+        let eventsObject = this.events() || {};
 
         let keys = Object.keys(eventsObject);
 
@@ -39,13 +39,17 @@ export default class BaseView {
 
                 let $el = this.$el.querySelector(selector);
 
-                $el.addEventListener(event, this[eventsObject[v]].bind(this));
+                try {
+                    $el.addEventListener(event, this[eventsObject[v]].bind(this));
+                } catch(e) {
+                    console.warn('Events: %s not assign. Please, check DOM element by selector: %s', v, selector);
+                }
             });
         }
     }
     
     dispatchAction(action, data) {
         let fn = this.dispatch[action];
-        return fn.call(data, this.dispatch);
+        return fn.call(this.dispatch, data);
     }
 }

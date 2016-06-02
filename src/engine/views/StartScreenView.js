@@ -1,5 +1,6 @@
 import BaseView from './BaseView';
-import startScreenHtml from '../../templates/screens/start.html';
+import startScreenHtml from '../../html/screens/start.html';
+import '../../less/screens/start.less';
 
 export default class StartScreenView extends BaseView {
     constructor(options) {
@@ -14,7 +15,7 @@ export default class StartScreenView extends BaseView {
     
     events() {
         return {
-            'click #js-start-game': 'startGame'
+            'click .js-start-game': 'startGame'
         }
     }
 

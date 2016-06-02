@@ -14,12 +14,13 @@ export default class Engine {
     }
     
     render() {
+        this.RenderEngine.setState(this.state);
+        
         let gameStatus = this.state['gameStatus'];
+
         switch(gameStatus) {
             case 'START':
                 return this.RenderEngine.gameStartScreen();
-            case 'STOP':
-                return this.RenderEngine.gameStopScreen();
             case 'RUN':
                 return this.RenderEngine.gameRunScreen();
         }

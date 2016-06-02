@@ -1,0 +1,19 @@
+<%
+    var items = new Array(data['logic']['neededNumber']);
+    var controlsList = new Array(data['logic']['setting']['maxNumber']);
+
+    console.log(items,)
+
+%>
+<div class="app-game-screen-wrap">
+    <div class="app-game-screen-wrap__items">
+        <% _.forEach(items, function(item){ %>
+        <div class="app-game-screen-wrap__items-item"></div>
+        <% }) %>
+    </div>
+    <div class="app-game-screen-wrap__controls">
+        <% _.forEach(controlsList, function(control, index){ %>
+        <button class="js-select-number" data-number="<%= ++index %>"><%= ++index %></button>
+        <% }) %>
+    </div>
+</div>

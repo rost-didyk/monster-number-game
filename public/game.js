@@ -46,19 +46,24 @@
 
 	'use strict';
 	
-	var _redux = __webpack_require__(1);
+	var _redux = __webpack_require__(2);
 	
-	var _main = __webpack_require__(15);
+	var _main = __webpack_require__(16);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _Engine = __webpack_require__(16);
+	var _Engine = __webpack_require__(19);
 	
 	var _Engine2 = _interopRequireDefault(_Engine);
 	
+	__webpack_require__(30);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = (0, _redux.createStore)(_main2.default);
+	var store = (0, _redux.createStore)(_main2.default, _main.initialState);
+	
+	// Global styles
+	
 	
 	var engine = new _Engine2.default({
 	    $root: document.getElementById('app'),
@@ -75,7 +80,8 @@
 	window.Engine = engine;
 
 /***/ },
-/* 1 */
+/* 1 */,
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -83,27 +89,27 @@
 	exports.__esModule = true;
 	exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
 	
-	var _createStore = __webpack_require__(3);
+	var _createStore = __webpack_require__(4);
 	
 	var _createStore2 = _interopRequireDefault(_createStore);
 	
-	var _combineReducers = __webpack_require__(10);
+	var _combineReducers = __webpack_require__(11);
 	
 	var _combineReducers2 = _interopRequireDefault(_combineReducers);
 	
-	var _bindActionCreators = __webpack_require__(12);
+	var _bindActionCreators = __webpack_require__(13);
 	
 	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 	
-	var _applyMiddleware = __webpack_require__(13);
+	var _applyMiddleware = __webpack_require__(14);
 	
 	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 	
-	var _compose = __webpack_require__(14);
+	var _compose = __webpack_require__(15);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
-	var _warning = __webpack_require__(11);
+	var _warning = __webpack_require__(12);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -124,10 +130,10 @@
 	exports.bindActionCreators = _bindActionCreators2["default"];
 	exports.applyMiddleware = _applyMiddleware2["default"];
 	exports.compose = _compose2["default"];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -227,7 +233,7 @@
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -236,11 +242,11 @@
 	exports.ActionTypes = undefined;
 	exports["default"] = createStore;
 	
-	var _isPlainObject = __webpack_require__(4);
+	var _isPlainObject = __webpack_require__(5);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _symbolObservable = __webpack_require__(8);
+	var _symbolObservable = __webpack_require__(9);
 	
 	var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 	
@@ -494,12 +500,12 @@
 	}
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getPrototype = __webpack_require__(5),
-	    isHostObject = __webpack_require__(6),
-	    isObjectLike = __webpack_require__(7);
+	var getPrototype = __webpack_require__(6),
+	    isHostObject = __webpack_require__(7),
+	    isObjectLike = __webpack_require__(8);
 	
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -570,7 +576,7 @@
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	/* Built-in method references for those with the same name as other `lodash` methods. */
@@ -591,7 +597,7 @@
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	/**
@@ -617,7 +623,7 @@
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	/**
@@ -652,18 +658,18 @@
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/* global window */
 	'use strict';
 	
-	module.exports = __webpack_require__(9)(global || window || this);
+	module.exports = __webpack_require__(10)(global || window || this);
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -688,7 +694,7 @@
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -696,13 +702,13 @@
 	exports.__esModule = true;
 	exports["default"] = combineReducers;
 	
-	var _createStore = __webpack_require__(3);
+	var _createStore = __webpack_require__(4);
 	
-	var _isPlainObject = __webpack_require__(4);
+	var _isPlainObject = __webpack_require__(5);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _warning = __webpack_require__(11);
+	var _warning = __webpack_require__(12);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -818,10 +824,10 @@
 	    return hasChanged ? nextState : state;
 	  };
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -851,7 +857,7 @@
 	}
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -907,7 +913,7 @@
 	}
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -918,7 +924,7 @@
 	
 	exports["default"] = applyMiddleware;
 	
-	var _compose = __webpack_require__(14);
+	var _compose = __webpack_require__(15);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
@@ -970,7 +976,7 @@
 	}
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1015,7 +1021,7 @@
 	}
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1023,11 +1029,29 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.initialState = undefined;
 	
-	var _redux = __webpack_require__(1);
+	var _redux = __webpack_require__(2);
+	
+	var _lodash = __webpack_require__(17);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var initialState = exports.initialState = {
+	    gameStatus: 'START', // 'START', 'RUN', 'STOP',
+	    logic: {
+	        setting: {
+	            maxNumber: 10
+	        },
+	        neededNumber: null,
+	        matched: null
+	    }
+	};
 	
 	function gameStatus() {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? 'START' : arguments[0];
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 	    var action = arguments[1];
 	
 	    switch (action.type) {
@@ -1038,282 +1062,29 @@
 	    }
 	}
 	
+	function logic() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	    var action = arguments[1];
+	
+	    switch (action.type) {
+	        case 'GAME_STATUS_RUN':
+	            return Object.assign({}, state, {
+	                neededNumber: _lodash2.default.random(1, state['setting']['maxNumber'])
+	            });
+	        default:
+	            return state;
+	    }
+	}
+	
 	var gameState = (0, _redux.combineReducers)({
-	    gameStatus: gameStatus
+	    gameStatus: gameStatus,
+	    logic: logic
 	});
 	
 	exports.default = gameState;
 
 /***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _Render = __webpack_require__(17);
-	
-	var _Render2 = _interopRequireDefault(_Render);
-	
-	var _Action = __webpack_require__(24);
-	
-	var _Action2 = _interopRequireDefault(_Action);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var Engine = function () {
-	    function Engine(options) {
-	        _classCallCheck(this, Engine);
-	
-	        this.state = options['state'];
-	        this.RenderEngine = new _Render2.default(options['$root']);
-	        this.RenderEngine.setActionDispatch(new _Action2.default(options['dispatch']));
-	    }
-	
-	    _createClass(Engine, [{
-	        key: 'listenState',
-	        value: function listenState(currentState) {
-	            this.state = currentState;
-	            this.render();
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var gameStatus = this.state['gameStatus'];
-	            switch (gameStatus) {
-	                case 'START':
-	                    return this.RenderEngine.gameStartScreen();
-	                case 'STOP':
-	                    return this.RenderEngine.gameStopScreen();
-	                case 'RUN':
-	                    return this.RenderEngine.gameRunScreen();
-	            }
-	        }
-	    }]);
-	
-	    return Engine;
-	}();
-	
-	exports.default = Engine;
-
-/***/ },
 /* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _StartScreenView = __webpack_require__(18);
-	
-	var _StartScreenView2 = _interopRequireDefault(_StartScreenView);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var Render = function () {
-	    function Render($root) {
-	        _classCallCheck(this, Render);
-	
-	        this.$root = $root;
-	        this.ActionDispatch = null;
-	    }
-	
-	    _createClass(Render, [{
-	        key: 'setActionDispatch',
-	        value: function setActionDispatch(Action) {
-	            this.ActionDispatch = Action;
-	        }
-	    }, {
-	        key: 'getActionDispatch',
-	        value: function getActionDispatch() {
-	            return this.ActionDispatch;
-	        }
-	    }, {
-	        key: 'gameStartScreen',
-	        value: function gameStartScreen() {
-	            var View = new _StartScreenView2.default({
-	                dispatch: this.getActionDispatch()
-	            });
-	
-	            this.$root.appendChild(View.$el);
-	        }
-	    }]);
-	
-	    return Render;
-	}();
-	
-	exports.default = Render;
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _BaseView2 = __webpack_require__(19);
-	
-	var _BaseView3 = _interopRequireDefault(_BaseView2);
-	
-	var _start = __webpack_require__(22);
-	
-	var _start2 = _interopRequireDefault(_start);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var StartScreenView = function (_BaseView) {
-	    _inherits(StartScreenView, _BaseView);
-	
-	    function StartScreenView(options) {
-	        _classCallCheck(this, StartScreenView);
-	
-	        var template = {
-	            html: _start2.default,
-	            data: []
-	        };
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(StartScreenView).call(this, template, options));
-	    }
-	
-	    _createClass(StartScreenView, [{
-	        key: 'events',
-	        value: function events() {
-	            return {
-	                'click #js-start-game': 'startGame'
-	            };
-	        }
-	    }, {
-	        key: 'startGame',
-	        value: function startGame(e) {
-	            this.dispatchAction('start');
-	            return false;
-	        }
-	    }]);
-	
-	    return StartScreenView;
-	}(_BaseView3.default);
-	
-	exports.default = StartScreenView;
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _lodash = __webpack_require__(20);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var BaseView = function () {
-	
-	    //@to-do add remove events functionality
-	
-	    function BaseView(template, options) {
-	        _classCallCheck(this, BaseView);
-	
-	        this.eventsForDispatch = options['eventsForDispatch'] || [];
-	
-	        this.dispatch = options['dispatch'] || null;
-	
-	        var tmpl = this.makeTemplate(template['html'], template['data']);
-	
-	        this.$el = this.toHtmlObject(tmpl);
-	
-	        this.parseEvents();
-	    }
-	
-	    _createClass(BaseView, [{
-	        key: 'makeTemplate',
-	        value: function makeTemplate(templateHtml, data) {
-	            return _lodash2.default.template(templateHtml)(data);
-	        }
-	    }, {
-	        key: 'toHtmlObject',
-	        value: function toHtmlObject(html) {
-	            var d = document.createElement('div');
-	            d.innerHTML = html;
-	            return d.firstChild;
-	        }
-	    }, {
-	        key: 'events',
-	        value: function events() {}
-	    }, {
-	        key: 'parseEvents',
-	        value: function parseEvents() {
-	            var _this = this;
-	
-	            var eventsObject = this.events();
-	
-	            var keys = Object.keys(eventsObject);
-	
-	            if (keys.length) {
-	                keys.forEach(function (v) {
-	                    var _v$split = v.split(' ');
-	
-	                    var _v$split2 = _slicedToArray(_v$split, 2);
-	
-	                    var event = _v$split2[0];
-	                    var selector = _v$split2[1];
-	
-	
-	                    var $el = _this.$el.querySelector(selector);
-	
-	                    $el.addEventListener(event, _this[eventsObject[v]].bind(_this));
-	                });
-	            }
-	        }
-	    }, {
-	        key: 'dispatchAction',
-	        value: function dispatchAction(action, data) {
-	            var fn = this.dispatch[action];
-	            return fn.call(data, this.dispatch);
-	        }
-	    }]);
-	
-	    return BaseView;
-	}();
-	
-	exports.default = BaseView;
-
-/***/ },
-/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -17721,10 +17492,10 @@
 	  }
 	}.call(this));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module), (function() { return this; }())))
 
 /***/ },
-/* 21 */
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -17740,14 +17511,378 @@
 
 
 /***/ },
-/* 22 */
-/***/ function(module, exports) {
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "<div class=\"start-screen-wrap\">\r\n    <button id=\"js-start-game\">Начать</button>\r\n</div>"
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _Render = __webpack_require__(20);
+	
+	var _Render2 = _interopRequireDefault(_Render);
+	
+	var _Action = __webpack_require__(29);
+	
+	var _Action2 = _interopRequireDefault(_Action);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Engine = function () {
+	    function Engine(options) {
+	        _classCallCheck(this, Engine);
+	
+	        this.state = options['state'];
+	        this.RenderEngine = new _Render2.default(options['$root']);
+	        this.RenderEngine.setActionDispatch(new _Action2.default(options['dispatch']));
+	    }
+	
+	    _createClass(Engine, [{
+	        key: 'listenState',
+	        value: function listenState(currentState) {
+	            this.state = currentState;
+	            this.render();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            this.RenderEngine.setState(this.state);
+	
+	            var gameStatus = this.state['gameStatus'];
+	
+	            switch (gameStatus) {
+	                case 'START':
+	                    return this.RenderEngine.gameStartScreen();
+	                case 'RUN':
+	                    return this.RenderEngine.gameRunScreen();
+	            }
+	        }
+	    }]);
+	
+	    return Engine;
+	}();
+	
+	exports.default = Engine;
 
 /***/ },
-/* 23 */,
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _StartScreenView = __webpack_require__(21);
+	
+	var _StartScreenView2 = _interopRequireDefault(_StartScreenView);
+	
+	var _RunScreenView = __webpack_require__(28);
+	
+	var _RunScreenView2 = _interopRequireDefault(_RunScreenView);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Render = function () {
+	    function Render($root) {
+	        _classCallCheck(this, Render);
+	
+	        this.$root = $root;
+	        this.ActionDispatch = null;
+	        this.state = [];
+	    }
+	
+	    _createClass(Render, [{
+	        key: 'setActionDispatch',
+	        value: function setActionDispatch(Action) {
+	            this.ActionDispatch = Action;
+	        }
+	    }, {
+	        key: 'getActionDispatch',
+	        value: function getActionDispatch() {
+	            return this.ActionDispatch;
+	        }
+	    }, {
+	        key: 'setState',
+	        value: function setState(state) {
+	            this.state = state;
+	        }
+	    }, {
+	        key: 'getState',
+	        value: function getState() {
+	            return this.state;
+	        }
+	    }, {
+	        key: 'gameStartScreen',
+	        value: function gameStartScreen() {
+	            var View = new _StartScreenView2.default({
+	                dispatch: this.getActionDispatch(),
+	                state: this.getState()
+	            });
+	
+	            this.$root.innerHTML = '';
+	
+	            this.$root.appendChild(View.$el);
+	        }
+	    }, {
+	        key: 'gameRunScreen',
+	        value: function gameRunScreen() {
+	            var View = new _RunScreenView2.default({
+	                dispatch: this.getActionDispatch(),
+	                state: this.getState()
+	            });
+	            this.$root.innerHTML = '';-this.$root.appendChild(View.$el);
+	        }
+	    }]);
+	
+	    return Render;
+	}();
+	
+	exports.default = Render;
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _BaseView2 = __webpack_require__(22);
+	
+	var _BaseView3 = _interopRequireDefault(_BaseView2);
+	
+	var _start = __webpack_require__(23);
+	
+	var _start2 = _interopRequireDefault(_start);
+	
+	__webpack_require__(24);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var StartScreenView = function (_BaseView) {
+	    _inherits(StartScreenView, _BaseView);
+	
+	    function StartScreenView(options) {
+	        _classCallCheck(this, StartScreenView);
+	
+	        var template = {
+	            html: _start2.default,
+	            data: []
+	        };
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(StartScreenView).call(this, template, options));
+	    }
+	
+	    _createClass(StartScreenView, [{
+	        key: 'events',
+	        value: function events() {
+	            return {
+	                'click .js-start-game': 'startGame'
+	            };
+	        }
+	    }, {
+	        key: 'startGame',
+	        value: function startGame(e) {
+	            this.dispatchAction('start');
+	            return false;
+	        }
+	    }]);
+	
+	    return StartScreenView;
+	}(_BaseView3.default);
+	
+	exports.default = StartScreenView;
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _lodash = __webpack_require__(17);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var BaseView = function () {
+	
+	    //@to-do add remove events functionality
+	
+	    function BaseView(template, options) {
+	        _classCallCheck(this, BaseView);
+	
+	        this.dispatch = options['dispatch'] || null;
+	
+	        var tmpl = this.makeTemplate(template['html'], template['data']);
+	
+	        this.$el = this.toHtmlObject(tmpl);
+	
+	        this.parseEvents();
+	    }
+	
+	    _createClass(BaseView, [{
+	        key: 'makeTemplate',
+	        value: function makeTemplate(templateHtml, data) {
+	            return _lodash2.default.template(templateHtml)({
+	                data: data
+	            });
+	        }
+	    }, {
+	        key: 'toHtmlObject',
+	        value: function toHtmlObject(html) {
+	            var d = document.createElement('div');
+	            d.innerHTML = html;
+	            return d.firstChild;
+	        }
+	    }, {
+	        key: 'events',
+	        value: function events() {}
+	    }, {
+	        key: 'parseEvents',
+	        value: function parseEvents() {
+	            var _this = this;
+	
+	            var eventsObject = this.events() || {};
+	
+	            var keys = Object.keys(eventsObject);
+	
+	            if (keys.length) {
+	                keys.forEach(function (v) {
+	                    var _v$split = v.split(' ');
+	
+	                    var _v$split2 = _slicedToArray(_v$split, 2);
+	
+	                    var event = _v$split2[0];
+	                    var selector = _v$split2[1];
+	
+	
+	                    var $el = _this.$el.querySelector(selector);
+	
+	                    try {
+	                        $el.addEventListener(event, _this[eventsObject[v]].bind(_this));
+	                    } catch (e) {
+	                        console.warn('Events: %s not assign. Please, check DOM element by selector: %s', v, selector);
+	                    }
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'dispatchAction',
+	        value: function dispatchAction(action, data) {
+	            var fn = this.dispatch[action];
+	            return fn.call(this.dispatch, data);
+	        }
+	    }]);
+	
+	    return BaseView;
+	}();
+	
+	exports.default = BaseView;
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"app-start-screen-wrap\">\r\n    <div class=\"app-start-screen-wrap__control\">\r\n        <button class=\"js-start-game app-start-screen-wrap__btn\">Начать</button>\r\n    </div>\r\n</div>"
+
+/***/ },
 /* 24 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _BaseView2 = __webpack_require__(22);
+	
+	var _BaseView3 = _interopRequireDefault(_BaseView2);
+	
+	var _game = __webpack_require__(32);
+	
+	var _game2 = _interopRequireDefault(_game);
+	
+	__webpack_require__(33);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var RunScreenView = function (_BaseView) {
+	    _inherits(RunScreenView, _BaseView);
+	
+	    function RunScreenView(options) {
+	        _classCallCheck(this, RunScreenView);
+	
+	        var template = {
+	            html: _game2.default,
+	            data: options['state']
+	        };
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(RunScreenView).call(this, template, options));
+	    }
+	
+	    _createClass(RunScreenView, [{
+	        key: 'events',
+	        value: function events() {}
+	    }]);
+	
+	    return RunScreenView;
+	}(_BaseView3.default);
+	
+	exports.default = RunScreenView;
+
+/***/ },
+/* 29 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -17770,7 +17905,17 @@
 	    _createClass(Action, [{
 	        key: 'start',
 	        value: function start() {
-	            console.log('start');
+	            this.dispatch({
+	                type: 'GAME_STATUS_RUN'
+	            });
+	        }
+	    }, {
+	        key: 'select',
+	        value: function select(number) {
+	            this.dispatch({
+	                type: 'GAME_SELECT_NUMBER',
+	                number: number
+	            });
 	        }
 	    }]);
 	
@@ -17778,6 +17923,25 @@
 	}();
 	
 	exports.default = Action;
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 31 */,
+/* 32 */
+/***/ function(module, exports) {
+
+	module.exports = "<%\r\n    var items = new Array(data['logic']['neededNumber']);\r\n    var controlsList = new Array(data['logic']['setting']['maxNumber']);\r\n\r\n    console.log(items,)\r\n\r\n%>\r\n<div class=\"app-game-screen-wrap\">\r\n    <div class=\"app-game-screen-wrap__items\">\r\n        <% _.forEach(items, function(item){ %>\r\n        <div class=\"app-game-screen-wrap__items-item\"></div>\r\n        <% }) %>\r\n    </div>\r\n    <div class=\"app-game-screen-wrap__controls\">\r\n        <% _.forEach(controlsList, function(control, index){ %>\r\n        <button class=\"js-select-number\" data-number=\"<%= ++index %>\"><%= ++index %></button>\r\n        <% }) %>\r\n    </div>\r\n</div>"
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
