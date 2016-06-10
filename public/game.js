@@ -56,7 +56,7 @@
 	
 	var _Engine2 = _interopRequireDefault(_Engine);
 	
-	__webpack_require__(30);
+	__webpack_require__(33);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1045,8 +1045,9 @@
 	        setting: {
 	            maxNumber: 10
 	        },
+	        levelNumber: 1,
 	        neededNumber: null,
-	        matched: null
+	        matched: 1 // enum{1,2,3} 1 - start, 2 - matching, 3 - not matching
 	    }
 	};
 	
@@ -1069,6 +1070,17 @@
 	    switch (action.type) {
 	        case 'GAME_STATUS_RUN':
 	            return Object.assign({}, state, {
+	                neededNumber: _lodash2.default.random(1, state['setting']['maxNumber'])
+	            });
+	        case 'GAME_SELECT_NUMBER':
+	            var matched = state['neededNumber'] == action['number'] ? 2 : 3;
+	            return Object.assign({}, state, {
+	                matched: matched
+	            });
+	        case 'GAME_NUMBER_MATCHED':
+	            return Object.assign({}, state, {
+	                matched: 1,
+	                levelNumber: ++state['levelNumber'],
 	                neededNumber: _lodash2.default.random(1, state['setting']['maxNumber'])
 	            });
 	        default:
@@ -17526,7 +17538,7 @@
 	
 	var _Render2 = _interopRequireDefault(_Render);
 	
-	var _Action = __webpack_require__(29);
+	var _Action = __webpack_require__(32);
 	
 	var _Action2 = _interopRequireDefault(_Action);
 	
@@ -17642,7 +17654,10 @@
 	                dispatch: this.getActionDispatch(),
 	                state: this.getState()
 	            });
-	            this.$root.innerHTML = '';-this.$root.appendChild(View.$el);
+	
+	            this.$root.innerHTML = '';
+	
+	            this.$root.appendChild(View.$el);
 	        }
 	    }]);
 	
@@ -17746,9 +17761,9 @@
 	
 	        this.dispatch = options['dispatch'] || null;
 	
-	        var tmpl = this.makeTemplate(template['html'], template['data']);
+	        var html = this.makeTemplate(template['html'], template['data']);
 	
-	        this.$el = this.toHtmlObject(tmpl);
+	        this.$el = this.toHtmlObject(html);
 	
 	        this.parseEvents();
 	    }
@@ -17789,13 +17804,15 @@
 	                    var selector = _v$split2[1];
 	
 	
-	                    var $el = _this.$el.querySelector(selector);
+	                    var $els = _lodash2.default.toArray(_this.$el.querySelectorAll(selector));
 	
-	                    try {
-	                        $el.addEventListener(event, _this[eventsObject[v]].bind(_this));
-	                    } catch (e) {
-	                        console.warn('Events: %s not assign. Please, check DOM element by selector: %s', v, selector);
-	                    }
+	                    $els.forEach(function ($el) {
+	                        try {
+	                            $el.addEventListener(event, _this[eventsObject[v]].bind(_this));
+	                        } catch (e) {
+	                            console.warn('Events: %s not assign. Please, check DOM element by selector: %s', v, selector);
+	                        }
+	                    });
 	                });
 	            }
 	        }
@@ -17843,11 +17860,11 @@
 	
 	var _BaseView3 = _interopRequireDefault(_BaseView2);
 	
-	var _game = __webpack_require__(32);
+	var _game = __webpack_require__(29);
 	
 	var _game2 = _interopRequireDefault(_game);
 	
-	__webpack_require__(33);
+	__webpack_require__(30);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -17873,7 +17890,30 @@
 	
 	    _createClass(RunScreenView, [{
 	        key: 'events',
-	        value: function events() {}
+	        value: function events() {
+	            return {
+	                'click .js-select-number': 'selectNumber',
+	                'click .js-matched-success': 'matched',
+	                'click .js-matched-fail': 'fail'
+	            };
+	        }
+	    }, {
+	        key: 'selectNumber',
+	        value: function selectNumber(e) {
+	            var data = e.target.dataset;
+	            var number = data['number'];
+	            this.dispatchAction('select', number);
+	        }
+	    }, {
+	        key: 'matched',
+	        value: function matched() {
+	            this.dispatchAction('matched');
+	        }
+	    }, {
+	        key: 'fail',
+	        value: function fail() {
+	            this.dispatchAction('fail');
+	        }
 	    }]);
 	
 	    return RunScreenView;
@@ -17883,6 +17923,19 @@
 
 /***/ },
 /* 29 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"app-game-screen-wrap\">\r\n    <%\r\n        var items = data['logic']['neededNumber'];\r\n        var controlsList = data['logic']['setting']['maxNumber'];\r\n        var matched = data['logic']['matched'];\r\n        var level = data['logic']['levelNumber'];\r\n    %>\r\n    <div class=\"app-game-screen-wrap__items\">\r\n        <div class=\"app-game-screen-wrap__items-meta\">\r\n            <span>Level: <%= level %></span>\r\n        </div>\r\n        <% for (var i = 1; i <= items; i++) { %>\r\n        <div class=\"app-game-screen-wrap__items-item\"></div>\r\n        <% } %>\r\n    </div>\r\n    <div class=\"app-game-screen-wrap__controls\">\r\n        <% for (var i = 1; i <= controlsList; i++) { %>\r\n        <button class=\"js-select-number\" data-number=\"<%= i %>\"><%= i %></button>\r\n        <% } %>\r\n    </div>\r\n    <% if(matched == 2 || matched == 3) { %>\r\n        <div class=\"app-game-screen-wrap__info\">\r\n            <% if (matched==2) { %>\r\n                <button class=\"js-matched-success\">Matched success</button>\r\n            <% } %>\r\n            <% if (matched==3) { %>\r\n                <button class=\"js-matched-fail\">Matched fail</button>\r\n            <% } %>\r\n        </div>\r\n    <% } %>\r\n</div>"
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 31 */,
+/* 32 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -17917,25 +17970,26 @@
 	                number: number
 	            });
 	        }
+	    }, {
+	        key: 'matched',
+	        value: function matched() {
+	            this.dispatch({
+	                type: 'GAME_NUMBER_MATCHED'
+	            });
+	        }
+	    }, {
+	        key: 'fail',
+	        value: function fail() {
+	            this.dispatch({
+	                type: 'GAME_NUMBER_FAIL'
+	            });
+	        }
 	    }]);
 	
 	    return Action;
 	}();
 	
 	exports.default = Action;
-
-/***/ },
-/* 30 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 31 */,
-/* 32 */
-/***/ function(module, exports) {
-
-	module.exports = "<%\r\n    var items = new Array(data['logic']['neededNumber']);\r\n    var controlsList = new Array(data['logic']['setting']['maxNumber']);\r\n\r\n    console.log(items,)\r\n\r\n%>\r\n<div class=\"app-game-screen-wrap\">\r\n    <div class=\"app-game-screen-wrap__items\">\r\n        <% _.forEach(items, function(item){ %>\r\n        <div class=\"app-game-screen-wrap__items-item\"></div>\r\n        <% }) %>\r\n    </div>\r\n    <div class=\"app-game-screen-wrap__controls\">\r\n        <% _.forEach(controlsList, function(control, index){ %>\r\n        <button class=\"js-select-number\" data-number=\"<%= ++index %>\"><%= ++index %></button>\r\n        <% }) %>\r\n    </div>\r\n</div>"
 
 /***/ },
 /* 33 */

@@ -16,4 +16,16 @@ export default class Action {
         })
     }
 
+    matched() {
+        this.dispatch({
+            type: 'GAME_NUMBER_MATCHED'
+        })
+    }
+
+    fail() {
+        this.dispatch({
+            type: 'GAME_NUMBER_FAIL'
+        })
+    }
+
 }

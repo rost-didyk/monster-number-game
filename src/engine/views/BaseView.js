@@ -7,9 +7,9 @@ export default class BaseView {
         
         this.dispatch = options['dispatch'] || null;
 
-        let tmpl = this.makeTemplate(template['html'], template['data']);
+        let html = this.makeTemplate(template['html'], template['data']);
 
-        this.$el = this.toHtmlObject(tmpl);
+        this.$el = this.toHtmlObject(html);
 
         this.parseEvents();
     }
@@ -37,13 +37,15 @@ export default class BaseView {
             keys.forEach(v=>{
                 let [event, selector] = v.split(' ');
 
-                let $el = this.$el.querySelector(selector);
+                let $els = _.toArray(this.$el.querySelectorAll(selector));
 
-                try {
-                    $el.addEventListener(event, this[eventsObject[v]].bind(this));
-                } catch(e) {
-                    console.warn('Events: %s not assign. Please, check DOM element by selector: %s', v, selector);
-                }
+                $els.forEach($el=>{
+                    try {
+                        $el.addEventListener(event, this[eventsObject[v]].bind(this));
+                    } catch(e) {
+                        console.warn('Events: %s not assign. Please, check DOM element by selector: %s', v, selector);
+                    }
+                });
             });
         }
     }

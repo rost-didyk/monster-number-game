@@ -40,7 +40,9 @@ export default class Render {
             dispatch: this.getActionDispatch(),
             state: this.getState()
         });
-        this.$root.innerHTML = '';-
+
+        this.$root.innerHTML = '';
+
         this.$root.appendChild(View.$el);
     }
 }

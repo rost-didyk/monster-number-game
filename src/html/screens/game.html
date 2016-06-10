@@ -1,19 +1,31 @@
-<%
-    var items = new Array(data['logic']['neededNumber']);
-    var controlsList = new Array(data['logic']['setting']['maxNumber']);
-
-    console.log(items,)
-
-%>
 <div class="app-game-screen-wrap">
+    <%
+        var items = data['logic']['neededNumber'];
+        var controlsList = data['logic']['setting']['maxNumber'];
+        var matched = data['logic']['matched'];
+        var level = data['logic']['levelNumber'];
+    %>
     <div class="app-game-screen-wrap__items">
-        <% _.forEach(items, function(item){ %>
+        <div class="app-game-screen-wrap__items-meta">
+            <span>Level: <%= level %></span>
+        </div>
+        <% for (var i = 1; i <= items; i++) { %>
         <div class="app-game-screen-wrap__items-item"></div>
-        <% }) %>
+        <% } %>
     </div>
     <div class="app-game-screen-wrap__controls">
-        <% _.forEach(controlsList, function(control, index){ %>
-        <button class="js-select-number" data-number="<%= ++index %>"><%= ++index %></button>
-        <% }) %>
+        <% for (var i = 1; i <= controlsList; i++) { %>
+        <button class="js-select-number" data-number="<%= i %>"><%= i %></button>
+        <% } %>
     </div>
+    <% if(matched == 2 || matched == 3) { %>
+        <div class="app-game-screen-wrap__info">
+            <% if (matched==2) { %>
+                <button class="js-matched-success">Matched success</button>
+            <% } %>
+            <% if (matched==3) { %>
+                <button class="js-matched-fail">Matched fail</button>
+            <% } %>
+        </div>
+    <% } %>
 </div>

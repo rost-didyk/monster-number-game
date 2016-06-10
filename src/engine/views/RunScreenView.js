@@ -13,6 +13,26 @@ export default class RunScreenView extends BaseView {
         super(template, options);
     }
 
-    events() {}
+    events() {
+        return {
+            'click .js-select-number': 'selectNumber',
+            'click .js-matched-success': 'matched',
+            'click .js-matched-fail': 'fail'
+        }
+    }
+
+    selectNumber(e) {
+        let data = e.target.dataset;
+        let number = data['number'];
+        this.dispatchAction('select',number);
+    }
+
+    matched() {
+        this.dispatchAction('matched');
+    }
+
+    fail() {
+        this.dispatchAction('fail');
+    }
 
 }
